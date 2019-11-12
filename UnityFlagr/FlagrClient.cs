@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 namespace UnityFlagr
 {
 
-    class FlagrClient
+    public class FlagrClient
     {
         readonly HttpClient client;
         readonly string host;
