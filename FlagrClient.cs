@@ -12,11 +12,12 @@ namespace UnityFlagr
 
     class FlagrClient
     {
-        readonly HttpClient client = new HttpClient();
+        readonly HttpClient client;
         readonly string host;
 
-        public FlagrClient(string host)
+        public FlagrClient(HttpClient client, string host)
         {
+            this.client = client;
             this.host = host;
         }
 

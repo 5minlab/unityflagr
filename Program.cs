@@ -15,8 +15,9 @@ namespace UnityFlagr
 
         static async Task Main(string[] args)
         {
+            var httpClient = new HttpClient();
 
-            var client = new FlagrClient("https://try-flagr.herokuapp.com/api/v1");
+            var client = new FlagrClient(httpClient, "https://try-flagr.herokuapp.com/api/v1");
 
             {
                 var req = new EvalContext()
