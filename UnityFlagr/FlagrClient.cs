@@ -59,8 +59,8 @@ namespace UnityFlagr
             using (var writer = new StringWriter())
             using (var jsonWriter = new JsonTextWriter(writer))
             {
-                var _serializer = JsonSerializer.Create();
-                _serializer.Serialize(jsonWriter, data);
+                var serializer = JsonSerializer.Create();
+                serializer.Serialize(jsonWriter, data);
                 jsonWriter.Flush();
 
                 json = writer.ToString();
@@ -72,11 +72,11 @@ namespace UnityFlagr
 
         async Task<T> DeserializeAsync<T>(HttpContent content)
         {
-            var _serializer = JsonSerializer.Create();
+            var serializer = JsonSerializer.Create();
             using (var s = await content.ReadAsStreamAsync().ConfigureAwait(false))
             using (var sr = new StreamReader(s))
             {
-                return (T)_serializer.Deserialize(sr, typeof(T));
+                return (T)serializer.Deserialize(sr, typeof(T));
             }
         }
     }
