@@ -1,9 +1,17 @@
 language: csharp
 mono: none
 dotnet: 2.2.402
+
+sudo: false
+
+install:
+  - cd UnityFlagr && dotnet restore && cd -
+  - cd UnityFlagrSample && dotnet restore && cd -
+
 script:
   - cd UnityFlagrSample/
   - dotnet build
   - dotnet run
+
 notifications:
   email: false
