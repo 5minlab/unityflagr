@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.IO;
 using System.Text;
-
+using System.Threading;
 using Fiveminlab.Newtonsoft.Json;
 
 namespace UnityFlagr
@@ -23,16 +23,26 @@ namespace UnityFlagr
 
         public async Task<EvalResult> PostEvaluation(EvalContext evalContext)
         {
+            return await PostEvaluation(evalContext, CancellationToken.None);
+        }
+
+        public async Task<EvalResult> PostEvaluation(EvalContext evalContext, CancellationToken cancellationToken)
+        {
             var content = await SerializeAsync(evalContext);
-            var resp = await client.PostAsync($"{this.host}/evaluation", content);
+            var resp = await client.PostAsync($"{this.host}/evaluation", content, cancellationToken);
             var respContent = resp.Content;
             return await DeserializeAsync<EvalResult>(respContent);
         }
 
         public async Task<BatchEvalResult> PostBatchEvaluation(BatchEvalContext evalContext)
         {
+            return await PostBatchEvaluation(evalContext, CancellationToken.None);
+        }
+
+        public async Task<BatchEvalResult> PostBatchEvaluation(BatchEvalContext evalContext, CancellationToken cancellationToken)
+        {
             var content = await SerializeAsync(evalContext);
-            var resp = await client.PostAsync($"{this.host}/evaluation/batch", content);
+            var resp = await client.PostAsync($"{this.host}/evaluation/batch", content, cancellationToken);
             var respContent = resp.Content;
             return await DeserializeAsync<BatchEvalResult>(respContent);
         }
