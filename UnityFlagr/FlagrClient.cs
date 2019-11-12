@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Text;
 
-using Newtonsoft.Json;
+using Fiveminlab.Newtonsoft.Json;
 
 namespace UnityFlagr
 {
