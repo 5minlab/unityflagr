@@ -6,7 +6,8 @@
 
   <ItemGroup>
     <Reference Include="Fiveminlab.Newtonsoft.Json">
-      <HintPath>libs/Fiveminlab.Newtonsoft.Json.dll</HintPath>
+      <HintPath>../libs/Fiveminlab.Newtonsoft.Json.dll</HintPath>
     </Reference>
   </ItemGroup>
+
 </Project>

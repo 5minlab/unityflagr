@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Fiveminlab.Newtonsoft.Json.Linq;
 
 namespace UnityFlagr
 {
@@ -6,14 +7,14 @@ namespace UnityFlagr
     {
         public string entityID = null;
         public string entityType = null;
-        public Dictionary<string, object> entityContext = null;
+        public JObject entityContext = null;
     }
 
     public class EvalContext
     {
         public string entityID = null;
         public string entityType = null;
-        public Dictionary<string, object> entityContext = null;
+        public JObject entityContext = null;
         public bool enableDebug = false;
         public int? flagID = null;
         public string flagKey = null;
@@ -27,7 +28,7 @@ namespace UnityFlagr
         public int segmentID = 0;
         public int variantID = 0;
         public string variantKey = null;
-        public Dictionary<string, object> variantAttachment = null;
+        public JObject variantAttachment = null;
         public EvalContext evalContext = null;
         public string timestamp = null;
         public EvalDebugLog evalDebugLog = null;

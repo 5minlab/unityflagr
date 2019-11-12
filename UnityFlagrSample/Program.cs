@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
+using Fiveminlab.Newtonsoft.Json;
+using Fiveminlab.Newtonsoft.Json.Linq;
 using UnityFlagr;
 
 class Program
@@ -18,11 +19,14 @@ class Program
 
     static async Task ExecutePostEvaluation(FlagrClient client)
     {
+        var entityContext = new JObject();
+        entityContext.Add("state", "NY");
+
         var req = new EvalContext()
         {
             entityID = "127",
             entityType = "user",
-            entityContext = new Dictionary<string, object>() { { "state", "NY" } },
+            entityContext = entityContext,
             flagID = 1,
             enableDebug = true,
         };
@@ -33,11 +37,14 @@ class Program
 
     static async Task ExecutePostEvaluationBatch(FlagrClient client)
     {
+        var entityContext = new JObject();
+        entityContext.Add("state", "NY");
+
         var ent = new Entity()
         {
             entityID = "127",
             entityType = "user",
-            entityContext = new Dictionary<string, object>() { { "state", "NY" } },
+            entityContext = entityContext,
         };
 
         var req = new BatchEvalContext()
