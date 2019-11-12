@@ -48,7 +48,7 @@ class Program
                 flagKeys = new List<string>() { "kmmcd1nsd6ze56chh" },
             };
 
-            var resp = await client.PostBatchEvaluation(req);
+            var resp = await client.PostEvaluationBatch(req);
             Console.WriteLine(JsonConvert.SerializeObject(resp, Formatting.Indented));
         }
     }

@@ -34,12 +34,12 @@ namespace UnityFlagr
             return await DeserializeAsync<EvalResult>(respContent);
         }
 
-        public async Task<BatchEvalResult> PostBatchEvaluation(BatchEvalContext evalContext)
+        public async Task<BatchEvalResult> PostEvaluationBatch(BatchEvalContext evalContext)
         {
-            return await PostBatchEvaluation(evalContext, CancellationToken.None);
+            return await PostEvaluationBatch(evalContext, CancellationToken.None);
         }
 
-        public async Task<BatchEvalResult> PostBatchEvaluation(BatchEvalContext evalContext, CancellationToken cancellationToken)
+        public async Task<BatchEvalResult> PostEvaluationBatch(BatchEvalContext evalContext, CancellationToken cancellationToken)
         {
             var content = await SerializeAsync(evalContext);
             var resp = await client.PostAsync($"{this.host}/evaluation/batch", content, cancellationToken);
