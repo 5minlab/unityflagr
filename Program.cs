@@ -15,6 +15,11 @@ namespace testtest
         public IContentSerializer requestSerializer;
         public IContentSerializer responseSerializer;
 
+        static void Main(string[] args)
+        {
+            Console.WriteLine("asdf");
+        }
+
         public Program(HttpClient client, string baseAddress, IContentSerializer requestSerializer, IContentSerializer responseSerializer)
         {
             this.client = client ?? throw new ArgumentNullException(nameof(client));
