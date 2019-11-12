@@ -5,3 +5,6 @@ script:
   - cd UnityFlagrSample/
   - dotnet build
   - dotnet run
+notifications:
+  email: false
+  
