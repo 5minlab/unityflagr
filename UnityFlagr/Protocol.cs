@@ -30,6 +30,7 @@ namespace UnityFlagr
         public Dictionary<string, object> variantAttachment = null;
         public EvalContext evalContext = null;
         public string timestamp = null;
+        public EvalDebugLog evalDebugLog = null;
     }
 
     public class BatchEvalContext
@@ -43,5 +44,17 @@ namespace UnityFlagr
     public class BatchEvalResult
     {
         public List<EvalResult> evaluationResults = null;
+    }
+
+    public class SegmentDebugLog
+    {
+        public int segmentId = 0;
+        public string msg = null;
+    }
+
+    public class EvalDebugLog
+    {
+        public List<SegmentDebugLog> segmentDebugLogs = null;
+        public string msg = null;
     }
 }

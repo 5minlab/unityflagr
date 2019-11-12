@@ -2,54 +2,52 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using System.IO;
-using System.Text;
-
-using UnityFlagr;
-
 using Newtonsoft.Json;
+using UnityFlagr;
 
 class Program
 {
-    public static readonly HttpClient client = new HttpClient();
-
     static async Task Main(string[] args)
     {
         var httpClient = new HttpClient();
-
         var client = new FlagrClient(httpClient, "https://try-flagr.herokuapp.com/api/v1");
 
+        await ExecutePostEvaluation(client);
+        await ExecutePostEvaluationBatch(client);
+    }
+
+    static async Task ExecutePostEvaluation(FlagrClient client)
+    {
+        var req = new EvalContext()
         {
-            var req = new EvalContext()
-            {
-                entityID = "127",
-                entityType = "user",
-                entityContext = new Dictionary<string, object>() { { "state", "NY" } },
-                flagKey = "kmmcd1nsd6ze56chh",
-                enableDebug = true,
-            };
+            entityID = "127",
+            entityType = "user",
+            entityContext = new Dictionary<string, object>() { { "state", "NY" } },
+            flagID = 1,
+            enableDebug = true,
+        };
 
-            var resp = await client.PostEvaluation(req);
-            Console.WriteLine(JsonConvert.SerializeObject(resp, Formatting.Indented));
-        }
+        var resp = await client.PostEvaluation(req);
+        Console.WriteLine(JsonConvert.SerializeObject(resp, Formatting.Indented));
+    }
 
+    static async Task ExecutePostEvaluationBatch(FlagrClient client)
+    {
+        var ent = new Entity()
         {
-            var ent = new Entity()
-            {
-                entityID = "127",
-                entityType = "user",
-                entityContext = new Dictionary<string, object>() { { "state", "NY" } },
-            };
+            entityID = "127",
+            entityType = "user",
+            entityContext = new Dictionary<string, object>() { { "state", "NY" } },
+        };
 
-            var req = new BatchEvalContext()
-            {
-                entities = new List<Entity>() { ent, },
-                enableDebug = true,
-                flagKeys = new List<string>() { "kmmcd1nsd6ze56chh" },
-            };
+        var req = new BatchEvalContext()
+        {
+            entities = new List<Entity>() { ent, },
+            enableDebug = true,
+            flagIDs = new List<int>() { 1 },
+        };
 
-            var resp = await client.PostEvaluationBatch(req);
-            Console.WriteLine(JsonConvert.SerializeObject(resp, Formatting.Indented));
-        }
+        var resp = await client.PostEvaluationBatch(req);
+        Console.WriteLine(JsonConvert.SerializeObject(resp, Formatting.Indented));
     }
 }
